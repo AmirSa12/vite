@@ -9,11 +9,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
@@ -26,12 +23,7 @@ jobs:
         run: pnpm build
         working-directory: ./packages/vite
 
-      - name: Override npm pack
-        run: chmod +x scripts/custom-pack.sh
-        shell: bash
-
-      - name: Publish
-        run: ./scripts/custom-pack.sh pkg-pr-new publish
+      - run: pnpm pack && pnpm pkg-pr-new publish
         working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
