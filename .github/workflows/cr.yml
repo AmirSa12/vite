@@ -23,7 +23,10 @@ jobs:
         run: pnpm build
         working-directory: ./packages/vite
 
-      - run: pnpm pack && pnpm pkg-pr-new publish
+      - name: Generate package tarball
+        run: pnpm pack --dry-run | tail -n 1 | xargs tar -cf vite.tar
+
+      - run: pnpm pkg-pr-new publish --tarball ./vite.tar
         working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
