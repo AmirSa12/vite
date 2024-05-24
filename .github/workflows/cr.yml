@@ -26,11 +26,10 @@ jobs:
         run: pnpm build
         working-directory: ./packages/vite
 
-      - name: Override npm with pnpm
+      - name: Override npm pack
         run: |
-          echo '#!/bin/bash' > /usr/local/bin/npm
-          echo 'if [ "$1" == "pack" ]; then shift; exec pnpm pack "$@"; else exec /usr/bin/npm "$@"; fi' >> /usr/local/bin/npm
-          chmod +x /usr/local/bin/npm
+          chmod +x scripts/override-npm-pack.sh
+          sudo mv scripts/override-npm-pack.sh /usr/local/bin/npm
         shell: bash
 
       - name: Publish
