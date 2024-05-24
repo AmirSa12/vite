@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ "$1" == "pack" ]; then
+if [[ "$1" == "pack" ]]; then
   shift
-  exec pnpm pack "$@"
+  pnpm pack "$@"
 else
-  exec npm "$@"
+  npm "$@"
 fi
