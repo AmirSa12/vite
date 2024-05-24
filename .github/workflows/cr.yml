@@ -24,7 +24,7 @@ jobs:
         working-directory: ./packages/vite
 
       - name: Generate package tarball
-        run: pnpm pack --dry-run | tail -n 1 | xargs tar -cf vite.tar
+        run: pnpm pack --dry-run | tail -n 1 | xargs -I {} tar -cf vite.tar {}
 
       - run: pnpm pkg-pr-new publish --tarball ./vite.tar
         working-directory: ./packages/vite
