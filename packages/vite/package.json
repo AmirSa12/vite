@@ -68,6 +68,9 @@
   "bugs": {
     "url": "https://github.com/vitejs/vite/issues"
   },
+  "config": {
+    "package-lock": "../../pnpm-lock.yaml"
+  },
   "homepage": "https://vitejs.dev",
   "funding": "https://github.com/vitejs/vite?sponsor=1",
   "scripts": {

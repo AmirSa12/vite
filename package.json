@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/vitejs/vite.git"
   },
-  "config": {
-    "package-lock": "./pnpm-lock.yaml"
-  },
   "keywords": [
     "frontend",
     "hmr",
