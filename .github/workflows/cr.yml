@@ -27,11 +27,11 @@ jobs:
         working-directory: ./packages/vite
 
       - name: Override npm pack
-        run: chmod +x scripts/override-npm-pack.sh
+        run: chmod +x scripts/custom-pack.sh
         shell: bash
 
       - name: Publish
-        run: ./scripts/override-npm-pack.sh pkg-pr-new publish
+        run: ./scripts/custom-pack.sh pkg-pr-new publish
         working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
