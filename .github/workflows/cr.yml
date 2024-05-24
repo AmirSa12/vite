@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - run: pnpx pkg-pr-new publish
+      - run: pnpn pkg-pr-new publish
         working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

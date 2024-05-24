@@ -138,5 +138,8 @@
   },
   "stackblitz": {
     "startCommand": "pnpm --filter='./packages/vite' run dev"
+  },
+  "dependencies": {
+    "pkg-pr-new": "^0.0.5"
   }
 }
