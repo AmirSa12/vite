@@ -9,8 +9,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
@@ -23,7 +26,15 @@ jobs:
         run: pnpm build
         working-directory: ./packages/vite
 
-      - run: pnpm pkg-pr-new publish
+      - name: Override npm with pnpm
+        run: |
+          echo '#!/bin/bash' > /usr/local/bin/npm
+          echo 'if [ "$1" == "pack" ]; then shift; exec pnpm pack "$@"; else exec /usr/bin/npm "$@"; fi' >> /usr/local/bin/npm
+          chmod +x /usr/local/bin/npm
+        shell: bash
+
+      - name: Publish
+        run: pnpm pkg-pr-new publish
         working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
