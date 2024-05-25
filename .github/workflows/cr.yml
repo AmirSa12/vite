@@ -17,13 +17,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-        working-directory: ./packages/vite
 
       - name: Build
         run: pnpm build
-        working-directory: ./packages/vite
 
       - run: pnpx pkg-pr-new publish ./packages/vite
-        working-directory: ./packages/vite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
